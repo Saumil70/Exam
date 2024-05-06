@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Exam.StudentViewModel.StudentViewModel>
+
+@foreach (var item in Model)
+{
+    DateTime dob = item.DOB; 
+    int age = DateTime.Now.Year - dob.Year;
+    if (DateTime.Now.Month < dob.Month || (DateTime.Now.Month == dob.Month && DateTime.Now.Day < dob.Day))
+    {
+        age--; 
+    }
+
+    <tr>
+        <td><input type="checkbox" class="checkbox" value="@item.StudentId"></td>
+        <td>@item.FirstName @item.LastName</td>
+        <td>@item.Position</td>
+        <td>@item.CityName</td>
+        <td>@age</td>
+        <td>@item.StartingDate.ToString("yyyy-MM-dd")</td> 
+        <td>@item.Salary</td>
+        <td><a href="#" class="btn btn-primary" onclick="Edit('@item.StudentId')">Edit</a></td>
+    </tr>
+}
+
+
